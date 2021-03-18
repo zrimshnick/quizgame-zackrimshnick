@@ -1,3 +1,21 @@
+html,
+body,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+html {
+  font-family: "Open Sans", sans-serif;
+  font-size: 62.5%;
+}
+
 body {
-  background-color: red;
+  background-color: powderblue;
+}
+
+.title {
+  font-size: 10rem;
 }
