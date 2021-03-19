@@ -32,8 +32,21 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
 .question {
   padding-top: 1rem;
   padding-bottom: 1rem;
+  border: 0.5rem solid gray;
+}
+// make a 2x2 grid for answer choices
+.answer-choices {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 30rem;
+  height: 14rem;
+}
+.answer-choices option {
+  font-size: 3rem;
+  width: 15rem;
+  height: 7rem;
 }
