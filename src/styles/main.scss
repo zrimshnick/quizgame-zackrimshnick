@@ -31,22 +31,39 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 .question {
   padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   border: 0.5rem solid gray;
 }
+.question h1 {
+  padding-bottom: 0.5rem;
+}
+.question p {
+  padding-bottom: 1rem;
+}
 // make a 2x2 grid for answer choices
-.answer-choices {
+.answer-choices option {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 30rem;
-  height: 14rem;
+  width: 10rem;
+  height: 8rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
-.answer-choices option {
-  font-size: 3rem;
-  width: 15rem;
-  height: 7rem;
+
+.option {
+  font-size: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: lightgray;
+  border: 0.25rem solid rgb(194, 191, 191);
 }
