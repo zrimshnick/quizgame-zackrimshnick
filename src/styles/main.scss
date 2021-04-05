@@ -14,56 +14,78 @@ html {
 
 body {
   background-color: powderblue;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  font-size: 10rem;
+}
+
+body.correct {
+  background-color: lightgreen;
+}
+body.wrong {
+  background-color: rgb(240, 122, 140);
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.container h1 {
-  font-size: 6rem;
-  padding-top: 5rem;
-}
-
-.quiz-container {
-  font-size: 5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-.question {
-  padding-top: 1rem;
-  padding-bottom: 2rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border: 0.5rem solid gray;
-}
-.question h1 {
-  padding-bottom: 0.5rem;
-}
-.question p {
-  padding-bottom: 1rem;
-}
-// make a 2x2 grid for answer choices
-.answer-choices option {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 10rem;
-  height: 8rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  width: 80rem;
+  max-width: 80%;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 0 1rem 0.2rem;
 }
 
-.option {
-  font-size: 2rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  background-color: lightgray;
-  border: 0.25rem solid rgb(194, 191, 191);
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.btn {
+  background-color: rgba(173, 216, 230, 0.75);
+  border: 0.1rem solid black;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: black;
+  outline: none;
+}
+.btn:hover {
+  border-color: white;
+}
+.btn.correct {
+  background-color: lightgreen;
+}
+.btn.wrong {
+  background-color: rgb(240, 122, 140);
+}
+
+.btn-grid .btn {
+  font-size: 1.5rem;
+}
+
+.start-btn,
+.next-btn {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem 2rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hide {
+  display: none;
+}
+
+.score {
+  font-size: 3rem;
 }

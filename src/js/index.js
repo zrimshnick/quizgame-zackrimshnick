@@ -1,31 +1,145 @@
 console.log("Connected");
+///////////////////////////////////////////////////////////////
+// Start js for quiz game here
 
-//to start project
-let score = {};
+// grab elements in the HTML by id to use later in the js
+const startButton = document.getElementById("start-btn");
+const nextButton = document.getElementById("next-btn");
+const questionContainerElement = document.getElementById("question-container");
+const questionElement = document.getElementById("question");
+const answerButtonsElement = document.getElementById("answer-buttons");
+const scoreLabel = "Score: ";
 
-// store list of questions in array
-const question = {
-  questionContent: "How do I say hello in Italian?",
-  choices: [
-    {
-      choice: "Caio",
-      correct: true,
-    },
-    {
-      choice: "Ni Hao",
-      correct: false,
-    },
-  ],
-};
+// to create score counter
+let countRightAnswers = 0;
 
-// listen for start event, click or page load
+// to make questions appear in random order (as well as in the function startGame)
+let shuffledQuestions, currentQuestionIndex;
 
-// display question
+// on click, start button will move to next screen showing question 1
+startButton.addEventListener("click", startGame);
+nextButton.addEventListener("click", () => {
+  currentQuestionIndex++;
+  setNextQuestion();
+});
 
-// listen for user answer click
+// function to start the game: hides start button, randomizes question order, and calls the next question function
+function startGame() {
+  console.log("Started Game");
+  countRightAnswers = 0;
+  startButton.classList.add("hide");
+  shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+  currentQuestionIndex = 0;
+  questionContainerElement.classList.remove("hide");
+  setNextQuestion();
+}
 
-// if answer is true then update score show true modal green check
-// else update score show false modal red x
+// function to move onto next question: calls reset function and the show question function
+function setNextQuestion() {
+  resetState();
+  showQuestion(shuffledQuestions[currentQuestionIndex]);
+}
 
-// if question number is less than qusetions.length show next question
-// else display results
+// function to show question: grabs the question and answer choices, and turns each into a button, adding the class of "btn", as well as allowing to click your choice
+function showQuestion(question) {
+  questionElement.innerText = question.question;
+  question.answers.forEach((answer) => {
+    const button = document.createElement("button");
+    button.innerText = answer.text;
+    button.classList.add("btn");
+    if (answer.correct) {
+      button.dataset.correct = answer.correct;
+    }
+    button.addEventListener("click", selectAnswer);
+    answerButtonsElement.appendChild(button);
+  });
+}
+
+// function to reset the field: clears the body class of hide, and removes the answer choices
+function resetState() {
+  clearStatusClass(document.body);
+  nextButton.classList.add("hide");
+  while (answerButtonsElement.firstChild) {
+    answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+  }
+}
+
+// function to select answer: checks through the array to find correct choice and match if you selected it, and checks if there's more questions to continue, if not then allow to restart. also counts a correct answer
+function selectAnswer(e) {
+  const selectedButton = e.target;
+  const correct = selectedButton.dataset.correct;
+  setStatusClass(document.body, correct);
+  Array.from(answerButtonsElement.children).forEach((button) => {
+    setStatusClass(button, button.dataset.correct);
+  });
+  if (shuffledQuestions.length > currentQuestionIndex + 1) {
+    nextButton.classList.remove("hide");
+  } else {
+    startButton.innerText = "Restart";
+    startButton.classList.remove("hide");
+  }
+  if ((selectedButton.dataset = correct)) {
+    countRightAnswers++;
+  }
+  document.getElementById("right-answers").innerHTML = countRightAnswers;
+}
+
+// function to set a choice as correct or wrong: if the element parameter is correct then set to correct, if not then wrong
+function setStatusClass(element, correct) {
+  clearStatusClass(element);
+  if (correct) {
+    element.classList.add("correct");
+  } else {
+    element.classList.add("wrong");
+  }
+}
+
+// function to clear a choice: it removers either parameter
+function clearStatusClass(element) {
+  element.classList.remove("correct");
+  element.classList.remove("wrong");
+}
+
+// List of questions for quiz
+const questions = [
+  {
+    question:
+      "Who led the NBA in scoring with 34.3 ppg in the 2019-2020 season?",
+    answers: [
+      { text: "James Harden", correct: true },
+      { text: "Steph Curry", correct: false },
+      { text: "Bradley Beal", correct: false },
+      { text: "Giannis Antetokounmpo", correct: false },
+    ],
+  },
+  {
+    question:
+      "Who led the NBA in rebounding with 15.2 rpg in the 2019-2020 season?",
+    answers: [
+      { text: "Hassan Whiteside", correct: false },
+      { text: "Rudy Gobert", correct: false },
+      { text: "Andre Drummond", correct: true },
+      { text: "Giannis Antetokounmpo", correct: false },
+    ],
+  },
+  {
+    question:
+      "Who led the NBA in assists with 10.2 apg in the 2019-2020 season?",
+    answers: [
+      { text: "James Harden", correct: false },
+      { text: "Trae Young", correct: false },
+      { text: "Damian Lillard", correct: false },
+      { text: "LeBron James", correct: true },
+    ],
+  },
+  {
+    question:
+      "Who led all players in scoring with 36.3 ppg in the 2020 Postseason?",
+    answers: [
+      { text: "James Harden", correct: false },
+      { text: "Luke Doncic", correct: false },
+      { text: "Donovan Mitchell", correct: true },
+      { text: "Kawhi Leonard", correct: false },
+    ],
+  },
+];
