@@ -71,6 +71,7 @@ function resetState() {
 // function to select answer: checks through the array to find correct choice and match if you selected it, and checks if there's more questions to continue, if not then allow to restart. also counts a correct answer
 function selectAnswer(e) {
   const selectedButton = e.target;
+  console.log(selectedButton);
   const correct = selectedButton.dataset.correct;
   setStatusClass(document.body, correct);
   Array.from(answerButtonsElement.children).forEach((button) => {
@@ -82,7 +83,7 @@ function selectAnswer(e) {
     startButton.innerText = "Restart";
     startButton.classList.remove("hide");
   }
-  if ((selectedButton.dataset = correct)) {
+  if ((selectedButton.property = correct)) {
     countRightAnswers++;
   }
   document.getElementById("right-answers").innerHTML = countRightAnswers;
