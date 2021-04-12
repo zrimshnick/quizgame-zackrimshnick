@@ -12,10 +12,10 @@ const nextButton = document.getElementById("next-btn");
 const questionContainerElement = document.getElementById("question-container");
 const questionElement = document.getElementById("question");
 const answerButtonsElement = document.getElementById("answer-buttons");
-const scoreLabel = "Score: ";
 
 // to create score counter
 let countRightAnswers = 0;
+let countWrongAnswers = 0;
 
 // to make questions appear in random order (as well as in the function startGame)
 let shuffledQuestions, currentQuestionIndex;
@@ -87,8 +87,14 @@ function selectAnswer(e) {
   if ((selectedButton.property = correct)) {
     countRightAnswers++;
   }
+  if (!(selectedButton.property = correct)) {
+    countWrongAnswers++;
+  }
   document.getElementById("right-answers").innerHTML =
-    "Score: " + countRightAnswers;
+    "Score: " +
+    countRightAnswers +
+    "/" +
+    (countWrongAnswers + countRightAnswers);
 }
 
 // function to set a choice as correct or wrong: if the element parameter is correct then set to correct, if not then wrong
