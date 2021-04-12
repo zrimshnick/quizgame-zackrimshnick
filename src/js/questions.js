@@ -99,7 +99,7 @@ const questions = [
   // q10
   {
     question:
-      "Follwing the US and Candada, which country represents the most current NBA players? (as of 2020)",
+      "Following the US and Candada, which country represents the most current NBA players? (as of 2020)",
     answers: [
       { text: "Russia", correct: false },
       { text: "Australia", correct: false },
