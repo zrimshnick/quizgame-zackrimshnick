@@ -9,6 +9,8 @@ import { questions } from "./questions";
 // grab elements in the HTML by id to use later in the js
 const startButton = document.getElementById("start-btn");
 const nextButton = document.getElementById("next-btn");
+const endButton = document.getElementById("end-btn");
+const finalResults = document.getElementById("get-results");
 const questionContainerElement = document.getElementById("question-container");
 const questionElement = document.getElementById("question");
 const answerButtonsElement = document.getElementById("answer-buttons");
@@ -26,6 +28,7 @@ nextButton.addEventListener("click", () => {
   currentQuestionIndex++;
   setNextQuestion();
 });
+endButton.addEventListener("click", getResults);
 
 // function to start the game: hides start button, randomizes question order, and calls the next question function
 function startGame() {
@@ -36,6 +39,12 @@ function startGame() {
   currentQuestionIndex = 0;
   questionContainerElement.classList.remove("hide");
   setNextQuestion();
+}
+
+// function to bring to new screen showing score
+function getResults() {
+  console.log("Getting Results Function");
+  finalResults.classList.remove("hide");
 }
 
 // function to move onto next question: calls reset function and the show question function
@@ -81,8 +90,12 @@ function selectAnswer(e) {
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove("hide");
   } else {
-    startButton.innerText = "Restart";
-    startButton.classList.remove("hide");
+    //startButton.innerText = "Restart";
+    //startButton.classList.remove("hide");
+    console.log("Getting Results");
+    //nextButton.classList.add("hide");
+    endButton.classList.remove("hide");
+    //getResults();
   }
   if ((selectedButton.property = correct)) {
     countRightAnswers++;
