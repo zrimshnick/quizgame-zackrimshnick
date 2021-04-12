@@ -87,7 +87,8 @@ function selectAnswer(e) {
   if ((selectedButton.property = correct)) {
     countRightAnswers++;
   }
-  document.getElementById("right-answers").innerHTML = countRightAnswers;
+  document.getElementById("right-answers").innerHTML =
+    "Score: " + countRightAnswers;
 }
 
 // function to set a choice as correct or wrong: if the element parameter is correct then set to correct, if not then wrong
