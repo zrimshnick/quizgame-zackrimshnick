@@ -45,6 +45,7 @@ body.wrong {
   grid-template-columns: repeat(2, auto);
   gap: 1rem;
   margin: 2rem 0;
+  padding-bottom: 1rem;
 }
 
 .btn {
@@ -74,12 +75,15 @@ body.wrong {
   font-size: 1.5rem;
   font-weight: bold;
   padding: 0.5rem 2rem;
+  width: 20rem;
 }
 
 .controls {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 }
 
 .hide {
