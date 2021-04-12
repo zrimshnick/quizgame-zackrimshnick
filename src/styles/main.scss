@@ -23,14 +23,15 @@ body {
   height: 100vh;
   font-size: 10rem;
 }
-
+// makes whole background green or red based on answer choice
+/*
 body.correct {
   background-color: lightgreen;
 }
 body.wrong {
   background-color: rgb(240, 122, 140);
 }
-
+*/
 .container {
   width: 80rem;
   max-width: 80%;
@@ -59,6 +60,7 @@ body.wrong {
 .btn:hover {
   border-color: white;
 }
+
 .btn.correct {
   background-color: lightgreen;
 }
@@ -83,7 +85,6 @@ body.wrong {
   justify-content: center;
   align-items: center;
   padding-bottom: 1rem;
-  padding-top: 1rem;
 }
 
 .hide {
