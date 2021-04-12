@@ -42,6 +42,7 @@ function startGame() {
 function setNextQuestion() {
   resetState();
   showQuestion(shuffledQuestions[currentQuestionIndex]);
+  //showQuestion([currentQuestionIndex]);
 }
 
 // function to show question: grabs the question and answer choices, and turns each into a button, adding the class of "btn", as well as allowing to click your choice
