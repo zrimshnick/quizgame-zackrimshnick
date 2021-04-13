@@ -14,6 +14,7 @@ const finalResults = document.getElementById("get-results");
 const questionContainerElement = document.getElementById("question-container");
 const questionElement = document.getElementById("question");
 const answerButtonsElement = document.getElementById("answer-buttons");
+const score = document.getElementById("right-answers");
 
 // to create score counter
 let countRightAnswers = 0;
@@ -45,6 +46,17 @@ function startGame() {
 function getResults() {
   console.log("Getting Results Function");
   finalResults.classList.remove("hide");
+  score.classList.add("hide");
+  endButton.classList.add("hide");
+  questionContainerElement.classList.add("hide");
+  finalResults.innerText =
+    "You finished with a score of " +
+    countRightAnswers +
+    "/" +
+    (countWrongAnswers + countRightAnswers) +
+    ", or " +
+    (countRightAnswers / (countWrongAnswers + countRightAnswers)) * 100 +
+    "%";
 }
 
 // function to move onto next question: calls reset function and the show question function

@@ -53,7 +53,7 @@ body.wrong {
 }
 
 .btn {
-  background-color: rgba(173, 216, 230, 0.75);
+  background-color: rgba(149, 100, 241, 0.774);
   border: 0.1rem solid black;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
@@ -98,4 +98,11 @@ body.wrong {
 
 .score {
   font-size: 3rem;
+}
+
+// final screen
+.final-results {
+  text-align: center;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
 }
