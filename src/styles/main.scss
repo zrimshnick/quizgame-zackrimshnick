@@ -58,6 +58,7 @@ body.wrong {
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
   color: black;
+  font-weight: bold;
   outline: none;
 }
 .btn:hover {
@@ -105,4 +106,8 @@ body.wrong {
   text-align: center;
   padding-top: 3rem;
   padding-bottom: 2rem;
+}
+.final-results.hide {
+  padding-top: 0rem;
+  padding-bottom: 0rem;
 }

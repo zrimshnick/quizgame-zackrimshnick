@@ -5,11 +5,11 @@ import { questions } from "./questions";
 
 ///////////////////////////////////////////////////////////////
 // Start js for quiz game here
-
 // grab elements in the HTML by id to use later in the js
 const startButton = document.getElementById("start-btn");
 const nextButton = document.getElementById("next-btn");
 const endButton = document.getElementById("end-btn");
+const restartButton = document.getElementById("restart-btn");
 const finalResults = document.getElementById("get-results");
 const questionContainerElement = document.getElementById("question-container");
 const questionElement = document.getElementById("question");
@@ -23,13 +23,14 @@ let countWrongAnswers = 0;
 // to make questions appear in random order (as well as in the function startGame)
 let shuffledQuestions, currentQuestionIndex;
 
-// on click, start button will move to next screen showing question 1
+// these pretty much mean that on click of button, it will run a function
 startButton.addEventListener("click", startGame);
 nextButton.addEventListener("click", () => {
   currentQuestionIndex++;
   setNextQuestion();
 });
 endButton.addEventListener("click", getResults);
+restartButton.addEventListener("click", startGame);
 
 // function to start the game: hides start button, randomizes question order, and calls the next question function
 function startGame() {
@@ -39,29 +40,22 @@ function startGame() {
   shuffledQuestions = questions.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
   questionContainerElement.classList.remove("hide");
-  setNextQuestion();
-}
-
-// function to bring to new screen showing score
-function getResults() {
-  console.log("Getting Results Function");
-  finalResults.classList.remove("hide");
-  score.classList.add("hide");
-  endButton.classList.add("hide");
-  questionContainerElement.classList.add("hide");
-  finalResults.innerText =
-    "You finished with a score of " +
+  finalResults.classList.add("hide");
+  restartButton.classList.add("hide");
+  countRightAnswers = 0;
+  countWrongAnswers = 0;
+  document.getElementById("right-answers").innerHTML =
+    "Score: " +
     countRightAnswers +
     "/" +
-    (countWrongAnswers + countRightAnswers) +
-    ", or " +
-    (countRightAnswers / (countWrongAnswers + countRightAnswers)) * 100 +
-    "%";
+    (countWrongAnswers + countRightAnswers);
+  setNextQuestion();
 }
 
 // function to move onto next question: calls reset function and the show question function
 function setNextQuestion() {
   resetState();
+  score.classList.remove("hide");
   showQuestion(shuffledQuestions[currentQuestionIndex]);
   //showQuestion([currentQuestionIndex]);
 }
@@ -102,12 +96,8 @@ function selectAnswer(e) {
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove("hide");
   } else {
-    //startButton.innerText = "Restart";
-    //startButton.classList.remove("hide");
     console.log("Getting Results");
-    //nextButton.classList.add("hide");
     endButton.classList.remove("hide");
-    //getResults();
   }
   if ((selectedButton.property = correct)) {
     countRightAnswers++;
@@ -136,4 +126,28 @@ function setStatusClass(element, correct) {
 function clearStatusClass(element) {
   element.classList.remove("correct");
   element.classList.remove("wrong");
+}
+
+// function to bring to new screen showing score
+function getResults() {
+  console.log("Getting Results Function");
+  finalResults.classList.remove("hide");
+  score.classList.add("hide");
+  endButton.classList.add("hide");
+  questionContainerElement.classList.add("hide");
+  finalResults.innerText =
+    "You finished with a score of " +
+    countRightAnswers +
+    "/" +
+    (countWrongAnswers + countRightAnswers) +
+    ", or " +
+    (countRightAnswers / (countWrongAnswers + countRightAnswers)) * 100 +
+    "%";
+  restart();
+}
+
+// function to restart quiz
+function restart() {
+  console.log("Restarting Quiz...");
+  restartButton.classList.remove("hide");
 }
