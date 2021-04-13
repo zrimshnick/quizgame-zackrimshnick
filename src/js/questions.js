@@ -35,10 +35,10 @@ const questions = [
   // q4
   {
     question:
-      "Who led all players in scoring with 36.3 ppg in the 2020 Postseason?",
+      "Who led all players in scoring with 36.3 ppg in the 2020 Playoffs?",
     answers: [
       { text: "James Harden", correct: false },
-      { text: "Luke Doncic", correct: false },
+      { text: "Luka Doncic", correct: false },
       { text: "Donovan Mitchell", correct: true },
       { text: "Kawhi Leonard", correct: false },
     ],

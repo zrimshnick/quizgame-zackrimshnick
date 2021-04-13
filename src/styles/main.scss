@@ -5,6 +5,7 @@ body,
   padding: 0;
   box-sizing: border-box;
   font-size: 62.5%;
+  //height: 100%;
 }
 // font style and size
 html {
@@ -23,15 +24,42 @@ body {
   height: 100vh;
   font-size: 10rem;
 }
-// makes whole background green or red based on answer choice
-/*
-body.correct {
-  background-color: lightgreen;
+
+// background animation and styling
+.background {
+  animation: slide 3s ease-in-out infinite alternate;
+  // original colors: #6c3 & #09f
+  background-image: linear-gradient(
+    -60deg,
+    rgb(235, 70, 95) 50%,
+    rgba(0, 17, 248, 0.849) 50%
+  );
+  bottom: 0;
+  left: -50%;
+  opacity: 0.75;
+  position: fixed;
+  right: -50%;
+  top: 0;
+  z-index: -1;
 }
-body.wrong {
-  background-color: rgb(240, 122, 140);
+.background2 {
+  animation-direction: alternate-reverse;
+  animation-duration: 4s;
 }
-*/
+.background3 {
+  animation-duration: 5s;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-25%);
+  }
+  100% {
+    transform: translateX(25%);
+  }
+}
+
+// content styling
 .container {
   width: 80rem;
   max-width: 80%;
@@ -53,23 +81,26 @@ body.wrong {
 }
 
 .btn {
-  background-color: rgba(149, 100, 241, 0.774);
+  background-color: rgba(0, 17, 248, 0.849);
   border: 0.1rem solid black;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
-  color: black;
+  color: white;
+  text-shadow: 0.1rem 0 0 black, 0 -0.1rem 0 black, 0 0.1rem 0 black,
+    -0.1rem 0 0 black;
   font-weight: bold;
   outline: none;
 }
 .btn:hover {
   border-color: white;
+  color: white;
 }
 
 .btn.correct {
-  background-color: lightgreen;
+  background-color: rgb(18, 185, 60);
 }
 .btn.wrong {
-  background-color: rgb(240, 122, 140);
+  background-color: rgb(235, 70, 95);
 }
 
 .btn-grid .btn {
