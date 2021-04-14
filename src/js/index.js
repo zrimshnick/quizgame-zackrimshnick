@@ -5,7 +5,7 @@ import { questions } from "./questions";
 
 ///////////////////////////////////////////////////////////////
 // Start js for quiz game here
-// grab elements in the HTML by id to use later in the js
+// grab elements in the HTML by id to refer to later in the js
 const startButton = document.getElementById("start-btn");
 const nextButton = document.getElementById("next-btn");
 const endButton = document.getElementById("end-btn");
@@ -17,14 +17,14 @@ const answerButtonsElement = document.getElementById("answer-buttons");
 const score = document.getElementById("right-answers");
 const container = document.getElementById("container");
 
-// to create score counter
+// to create score counter (let is for changing variables)
 let countRightAnswers = 0;
 let countWrongAnswers = 0;
 
 // to make questions appear in random order (as well as in the function startGame)
 let shuffledQuestions, currentQuestionIndex;
 
-// these pretty much mean that on click of button, it will run a function
+// these pretty much mean that on "click" of button, it will run a function
 startButton.addEventListener("click", startGame);
 nextButton.addEventListener("click", () => {
   currentQuestionIndex++;
@@ -33,7 +33,7 @@ nextButton.addEventListener("click", () => {
 endButton.addEventListener("click", getResults);
 restartButton.addEventListener("click", startGame);
 
-// function to start the game: hides start button, randomizes question order, and calls the next question function
+// function to start the game: hides start button, the final results, and restart button randomizes question order, and calls the next question function
 function startGame() {
   console.log("Started Game");
   countRightAnswers = 0;
@@ -53,16 +53,15 @@ function startGame() {
   setNextQuestion();
 }
 
-// function to move onto next question: calls reset function and the show question function
+// function to move onto next question: calls reset function and the show question function; also shows the score & increases the size of the question container
 function setNextQuestion() {
   resetState();
   score.classList.remove("hide");
   showQuestion(shuffledQuestions[currentQuestionIndex]);
   container.classList.add("big");
-  //showQuestion([currentQuestionIndex]);
 }
 
-// function to show question: grabs the question and answer choices, and turns each into a button, adding the class of "btn", as well as allowing to click your choice
+// function to show question: grabs the question and answer choices, and turns each into a button, adding the class of "btn", as well as allowing to click your choice through event listener on "click"
 function showQuestion(question) {
   questionElement.innerText =
     countWrongAnswers + countRightAnswers + 1 + ") " + question.question;
@@ -85,11 +84,12 @@ function resetState() {
   while (answerButtonsElement.firstChild) {
     answerButtonsElement.removeChild(answerButtonsElement.firstChild);
   }
+  // removes "correct" and "wrong" to remove styling for correct/wrong choices
   container.classList.remove("correct");
   container.classList.remove("wrong");
 }
 
-// function to select answer: checks through the array to find correct choice and match if you selected it, and checks if there's more questions to continue, if not then allow to restart. also counts a correct answer
+// function to select answer: checks through the array to find correct choice and match if you selected it
 function selectAnswer(e) {
   const selectedButton = e.target;
   console.log(selectedButton);
@@ -98,12 +98,14 @@ function selectAnswer(e) {
   Array.from(answerButtonsElement.children).forEach((button) => {
     setStatusClass(button, button.dataset.correct);
   });
+  // checks if there's more question remaining and either hides the next button if there isn't or hides the end game button
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextButton.classList.remove("hide");
   } else {
     console.log("Getting Results");
     endButton.classList.remove("hide");
   }
+  // adds either correct or wrong to selected answer choice to give it that specific styling from the css as well as increase score by 1
   if ((selectedButton.property = correct)) {
     countRightAnswers++;
     container.classList.add("correct");
@@ -112,6 +114,7 @@ function selectAnswer(e) {
     countWrongAnswers++;
     container.classList.add("wrong");
   }
+  // uses right answers and right + wrong with a string to make the score counter
   document.getElementById("right-answers").innerHTML =
     "Score: " +
     countRightAnswers +
@@ -135,7 +138,7 @@ function clearStatusClass(element) {
   element.classList.remove("wrong");
 }
 
-// function to bring to new screen showing score
+// function to bring to new screen showing score, removes correct/wrong property, shows the final results, hides the score, end button, and question container
 function getResults() {
   console.log("Getting Results Function");
   container.classList.remove("correct");
@@ -144,6 +147,7 @@ function getResults() {
   score.classList.add("hide");
   endButton.classList.add("hide");
   questionContainerElement.classList.add("hide");
+  // text for showing the final score
   finalResults.innerText =
     "You finished with a score of " +
     countRightAnswers +
