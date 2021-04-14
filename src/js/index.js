@@ -15,6 +15,7 @@ const questionContainerElement = document.getElementById("question-container");
 const questionElement = document.getElementById("question");
 const answerButtonsElement = document.getElementById("answer-buttons");
 const score = document.getElementById("right-answers");
+const container = document.getElementById("container");
 
 // to create score counter
 let countRightAnswers = 0;
@@ -57,12 +58,14 @@ function setNextQuestion() {
   resetState();
   score.classList.remove("hide");
   showQuestion(shuffledQuestions[currentQuestionIndex]);
+  container.classList.add("big");
   //showQuestion([currentQuestionIndex]);
 }
 
 // function to show question: grabs the question and answer choices, and turns each into a button, adding the class of "btn", as well as allowing to click your choice
 function showQuestion(question) {
-  questionElement.innerText = question.question;
+  questionElement.innerText =
+    countWrongAnswers + countRightAnswers + 1 + ") " + question.question;
   question.answers.forEach((answer) => {
     const button = document.createElement("button");
     button.innerText = answer.text;
@@ -82,6 +85,8 @@ function resetState() {
   while (answerButtonsElement.firstChild) {
     answerButtonsElement.removeChild(answerButtonsElement.firstChild);
   }
+  container.classList.remove("correct");
+  container.classList.remove("wrong");
 }
 
 // function to select answer: checks through the array to find correct choice and match if you selected it, and checks if there's more questions to continue, if not then allow to restart. also counts a correct answer
@@ -101,9 +106,11 @@ function selectAnswer(e) {
   }
   if ((selectedButton.property = correct)) {
     countRightAnswers++;
+    container.classList.add("correct");
   }
   if (!(selectedButton.property = correct)) {
     countWrongAnswers++;
+    container.classList.add("wrong");
   }
   document.getElementById("right-answers").innerHTML =
     "Score: " +
@@ -131,6 +138,8 @@ function clearStatusClass(element) {
 // function to bring to new screen showing score
 function getResults() {
   console.log("Getting Results Function");
+  container.classList.remove("correct");
+  container.classList.remove("wrong");
   finalResults.classList.remove("hide");
   score.classList.add("hide");
   endButton.classList.add("hide");

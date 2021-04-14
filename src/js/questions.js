@@ -13,7 +13,7 @@ const questions = [
   // q2
   {
     question:
-      "Who led the NBA in rebounding with 15.2 rpg in the 2019-2020 season?",
+      "Who led the NBA in rebounds with 15.2 rpg in the 2019-2020 season?",
     answers: [
       { text: "Hassan Whiteside", correct: false },
       { text: "Rudy Gobert", correct: false },
@@ -56,7 +56,7 @@ const questions = [
   // q6
   {
     question:
-      "Which former NBA player is the current all-time leader in both assists and steals?",
+      "Which NBA player is the all-time leader in both assists and steals?",
     answers: [
       { text: "Jason Kidd", correct: false },
       { text: "LeBron James", correct: false },
@@ -76,8 +76,7 @@ const questions = [
   },
   // q8
   {
-    question:
-      "In what city were the Grizzlies located in prior to their move to Memphis?",
+    question: "In what city were the Grizzlies located in prior to Memphis?",
     answers: [
       { text: "Vancouver", correct: true },
       { text: "Providence", correct: false },
@@ -98,8 +97,7 @@ const questions = [
   },
   // q10
   {
-    question:
-      "Following the US and Candada, which country represents the most current NBA players? (as of 2020)",
+    question: "Which European country represents the most current NBA players?",
     answers: [
       { text: "Russia", correct: false },
       { text: "Australia", correct: false },
