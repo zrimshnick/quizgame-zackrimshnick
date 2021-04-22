@@ -106,11 +106,11 @@ function selectAnswer(e) {
     endButton.classList.remove("hide");
   }
   // adds either correct or wrong to selected answer choice to give it that specific styling from the css as well as increase score by 1
+  // else
   if ((selectedButton.property = correct)) {
     countRightAnswers++;
     container.classList.add("correct");
-  }
-  if (!(selectedButton.property = correct)) {
+  } else {
     countWrongAnswers++;
     container.classList.add("wrong");
   }
