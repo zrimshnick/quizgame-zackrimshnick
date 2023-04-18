@@ -1,7 +1,7 @@
 console.log("Connected");
 ///////////////////////////////////////////////////////////////
 // importing other js files
-import { questions } from "./questions";
+import { questions } from "./questions.js";
 
 ///////////////////////////////////////////////////////////////
 // Start js for quiz game here
